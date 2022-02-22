@@ -2,11 +2,19 @@ package com.blinikar.akvelon.database.tasks;
 
 import com.blinikar.akvelon.TaskStatuses;
 import com.blinikar.akvelon.database.projects.Project;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tasks")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Task {
 
     @Id
@@ -21,52 +29,6 @@ public class Task {
     private int priority;
     @Column
     private TaskStatuses status;
-
-    public Task() {
-    }
-
-    public Task(Long id, String name, String description, int priority, TaskStatuses status) {
-
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.priority = priority;
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public TaskStatuses getStatus() {
-        return status;
-    }
-
-    public void setStatus(TaskStatuses status) {
-        this.status = status;
-    }
+    @Column
+    private Long projectId;
 }

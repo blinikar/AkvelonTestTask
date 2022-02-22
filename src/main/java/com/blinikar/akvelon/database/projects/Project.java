@@ -1,11 +1,23 @@
 package com.blinikar.akvelon.database.projects;
 
 import com.blinikar.akvelon.ProjectStatuses;
+import com.blinikar.akvelon.database.tasks.Task;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "projects")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Project {
 
     @Id
@@ -15,72 +27,14 @@ public class Project {
     @Column
     private String name;
     @Column
-    private int startDate;
+    private Date startDate;
     @Column
-    private int completionDate;
+    private Date completionDate;
     @Column
     private int priority;
     @Column
     private ProjectStatuses status;
 
-    public Project() {
-    }
-
-    public Project(Long id, String name, int startDate, int completionDate, int priority, ProjectStatuses status) {
-
-        this.id = id;
-        this.name = name;
-        this.startDate = startDate;
-        this.completionDate = completionDate;
-        this.priority = priority;
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(int startDate) {
-        this.startDate = startDate;
-    }
-
-    public int getCompletionDate() {
-        return completionDate;
-    }
-
-    public void setCompletionDate(int completionDate) {
-        this.completionDate = completionDate;
-    }
-
-    public int getPriority() {
-        return priority;
-    }
-
-    public void setPriority(int priority) {
-        this.priority = priority;
-    }
-
-    public ProjectStatuses getStatus() {
-        return status;
-    }
-
-    public void setStatus(ProjectStatuses status) {
-        this.status = status;
-    }
+    @OneToMany
+    private List<Task> tasks;
 }
