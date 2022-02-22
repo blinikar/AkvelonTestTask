@@ -13,13 +13,14 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String name;
+    @Column
     private String description;
+    @Column
     private int priority;
+    @Column
     private TaskStatuses status;
-
-    @ManyToOne
-    private Project project;
 
     public Task() {
     }
