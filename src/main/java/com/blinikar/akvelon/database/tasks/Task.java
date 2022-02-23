@@ -1,7 +1,6 @@
 package com.blinikar.akvelon.database.tasks;
 
 import com.blinikar.akvelon.TaskStatuses;
-import com.blinikar.akvelon.database.projects.Project;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

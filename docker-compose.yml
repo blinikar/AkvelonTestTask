@@ -1,0 +1,38 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_DB: "postgres"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - akvelon-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - akvelon-network
+
+
+  app:
+    image: blinikar/akvelon
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/postgres"
+      SPRING_DATASOURCE_USERNAME: "postgres"
+      SPRING_DATASOURCE_PASSWORD: "postgres"
+    depends_on:
+      - postgres
+    networks:
+      - akvelon-network
+
+volumes:
+  akvelon-data:
+
+networks:
+  akvelon-network:

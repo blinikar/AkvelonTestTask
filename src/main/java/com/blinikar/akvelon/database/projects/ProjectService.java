@@ -37,9 +37,10 @@ public class ProjectService {
         if (findById(id) != null) {
             tasks = findById(id).getTasks();
 
+            projectRepository.delete(findById(id));
+
             taskRepository.deleteAll(tasks);
 
-            projectRepository.delete(findById(id));
         } else throw new DatabaseException();
     }
 

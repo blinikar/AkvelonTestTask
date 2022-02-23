@@ -1,8 +1,6 @@
 package com.blinikar.akvelon.API.tasks;
 
-import com.blinikar.akvelon.API.projects.ProjectDTO;
 import com.blinikar.akvelon.DatabaseException;
-import com.blinikar.akvelon.database.projects.Project;
 import com.blinikar.akvelon.database.tasks.Task;
 import com.blinikar.akvelon.database.tasks.TaskService;
 import org.modelmapper.ModelMapper;
@@ -21,8 +19,6 @@ public class TaskController {
 
     private static final String SUCCESS_STATUS = "success";
     private static final String ERROR_STATUS = "error";
-    private static final int CODE_SUCCESS = 100;
-    private static final int AUTH_FAILURE = 102;
 
     public TaskController(TaskService taskService, ModelMapper modelMapper) {
         this.taskService = taskService;
@@ -46,6 +42,10 @@ public class TaskController {
         } else return ResponseEntity.notFound().build();
     }
 
+    /**
+     * Pushes task into the repository. If task already exist changes it (by id,
+     * if ID is null creates new task).
+     */
     @PutMapping("/push")
     public ResponseEntity<TaskDTO> createNew(@RequestBody TaskDTO taskDto) {
         Task task = modelMapper.map(taskDto, Task.class);

@@ -6,6 +6,7 @@ public class DatabaseException extends Exception {
         super("Unknown Database Exception");
     }
 
+    @SuppressWarnings("unused")
     public DatabaseException(String message) {
         super(message);
     }

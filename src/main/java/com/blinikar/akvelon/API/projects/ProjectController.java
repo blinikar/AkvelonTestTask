@@ -60,6 +60,10 @@ public class ProjectController {
         return ResponseEntity.notFound().build();
     }
 
+    /**
+     * Pushes project into the repository. If project is already exists changes it (by id,
+     * if ID is null creates new task) (task list will stay the same).
+     */
     @PutMapping("/push")
     public ResponseEntity<ProjectDTO> createNew(@RequestBody ProjectDTO projectDto) {
         projectService.pushProject(modelMapper.map(projectDto, Project.class));

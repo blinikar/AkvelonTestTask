@@ -13,7 +13,7 @@ public class TaskService {
     private final TaskRepository taskRepository;
     private final ProjectService projectService;
 
-    public TaskService(TaskRepository taskRepository, ProjectService projectService, ModelMapper modelMapper) {
+    public TaskService(TaskRepository taskRepository, ProjectService projectService) {
         this.taskRepository = taskRepository;
         this.projectService = projectService;
     }
